@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         factory(User::class)->create([
             'name' =>'Azenga Kevin',
+            'email' => 'azenga.kevin7@gmail.com',
             'phone_number' => '+254700016349',
             'national_identification_number' => '33708342',
         ]);
