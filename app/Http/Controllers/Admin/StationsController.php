@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class StationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -108,8 +112,8 @@ class StationsController extends Controller
         return [
             'name' => ['required', 'string', 'unique:stations'],
             'location' => ['required'],
-            'lat' => [],
-            'lng' => [],
+            'lat' => ['numeric'],
+            'lng' => ['numeric'],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use App\Station;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -10,6 +11,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class StationManagementTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->be(factory(User::class)->create());
+
+    }
 
     /**
      * @test
