@@ -112,8 +112,8 @@ class StationsController extends Controller
         return [
             'name' => ['required', 'string', 'unique:stations'],
             'location' => ['required'],
-            'lat' => ['numeric'],
-            'lng' => ['numeric'],
+            'lat' => [],
+            'lng' => [],
         ];
     }
 }
