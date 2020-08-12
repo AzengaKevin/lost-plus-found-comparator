@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone_number', 'national_identification_number',
     ];
 
     /**
@@ -40,5 +40,10 @@ class User extends Authenticatable
     public function image()
     {
         return '/img/avatar.jpg';
+    }
+
+    public function officer()
+    {
+        return $this->hasOne(Officer::class);
     }
 }

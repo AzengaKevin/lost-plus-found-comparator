@@ -34,4 +34,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
     Route::resource('stations', 'StationsController');
+    Route::resource('officers', 'OfficersController');
 });
