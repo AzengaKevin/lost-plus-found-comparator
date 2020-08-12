@@ -9,8 +9,8 @@
 @section('content')
     <form action="{{ route('admin.stations.store') }}" method="post">
         @csrf
-        <input type="hidden" name="lat" value="0.00">
-        <input type="hidden" name="lng" value="0.00">
+        <input type="hidden" id="lat" name="lat" value="0.00">
+        <input type="hidden" id="lng" name="lng" value="0.00">
 
         <div class="form-group">
             <label for="name" class="text-gray-700">Name</label>
@@ -38,7 +38,7 @@
             @enderror
         </div>
 
-        <div id="map" class="bg-secondary" style="height: 32vh">
+        <div id="map" class="bg-secondary" style="height: 40vh">
             Google Maps
         </div>
 
@@ -46,4 +46,9 @@
             <button type="submit" class="btn btn-primary float-right">Submit</button>
         </div>
     </form>
+@endsection
+
+@section('scripts')
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.api_key') }}&libraries=places&callback=initMap"></script>
+    <script src="/js/maps/create.js"></script>
 @endsection
