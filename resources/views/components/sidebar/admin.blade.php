@@ -105,8 +105,7 @@
         <div id="permissions-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Permissions</a>
-                <a class="collapse-item" href="#">Add Permission</a>
+                <a class="collapse-item" href="{{ route('admin.permissions.index') }}">Browse Permissions</a>
             </div>
         </div>
     </li>                 

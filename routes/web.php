@@ -37,4 +37,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     Route::resource('officers', 'OfficersController');
     Route::resource('roles', 'RolesController')
         ->except('show');
+
+    Route::get('permissions', PermissionsController::class)
+        ->name('permissions.index');
 });
