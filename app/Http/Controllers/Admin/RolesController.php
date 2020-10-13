@@ -68,7 +68,10 @@ class RolesController extends Controller
         //Eager load permissions
         $role->load('permissions');
 
-        return view('admin.roles.edit', compact('role'));
+        //Get permissions
+        $permissions = Permission::all();
+
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**

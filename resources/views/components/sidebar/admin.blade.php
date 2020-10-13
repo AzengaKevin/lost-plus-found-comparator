@@ -9,7 +9,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -89,8 +89,8 @@
         <div id="roles-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Roles</a>
-                <a class="collapse-item" href="#">Add Role</a>
+                <a class="collapse-item" href="{{ route('admin.roles.index') }}">Browse Roles</a>
+                <a class="collapse-item" href="{{ route('admin.roles.create') }}">Add Role</a>
             </div>
         </div>
     </li>

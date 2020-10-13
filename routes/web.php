@@ -29,7 +29,7 @@ Auth::routes(['verified' => true, 'register' => false]);
 | goes
 |
 */
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 

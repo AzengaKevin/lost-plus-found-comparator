@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Role;
+use App\User;
 use App\Permission;
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
@@ -13,9 +14,15 @@ class AdminRolesManagementTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $user = null;
+
     public function setUp():void
     {
         parent::setUp();
+
+        $this->user = factory(User::class)->create();
+
+        $this->be($this->user);
     }
 
     /**
@@ -92,7 +99,7 @@ class AdminRolesManagementTest extends TestCase
      */
     public function admin_can_view_edit_role_page()
     {
-        //$this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         //Arrange
         $role = factory(Role::class)->create();
@@ -107,7 +114,7 @@ class AdminRolesManagementTest extends TestCase
 
         $response->assertViewIs('admin.roles.edit');
 
-        $response->assertViewHas('role');
+        $response->assertViewHasAll(['role', 'permissions']);
 
     }
 
