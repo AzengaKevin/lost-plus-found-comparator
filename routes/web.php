@@ -35,4 +35,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
     Route::resource('stations', 'StationsController');
     Route::resource('officers', 'OfficersController');
+    Route::resource('roles', 'RolesController')
+        ->except('show');
 });
