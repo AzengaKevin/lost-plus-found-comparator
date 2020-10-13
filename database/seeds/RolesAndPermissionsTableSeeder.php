@@ -42,6 +42,10 @@ class RolesAndPermissionsTableSeeder extends Seeder
             'view-edit-officer-page',
             'update-officer',
             'delete-officer',
+
+            //Permissions Permissions
+
+            'view-all-permissions-page',
         ];
 
         //Create all system permissions
