@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" {{ $attributes }}>
     <a class="sidebar-brand d-flex align-items-center justify-content-center" role="button" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
             <img class="rounded-circle" src="{{ asset('img/avatar.jpg') }}" height="48" alt="IEBC Logo">

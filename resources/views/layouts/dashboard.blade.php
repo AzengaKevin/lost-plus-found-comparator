@@ -15,6 +15,9 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
 
+    <!-- Alpine JS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('styles')
 </head>
@@ -22,9 +25,9 @@
 <body id="page-top">
     <div id="app">
         <!-- Page Wrapper -->
-        <div id="wrapper">
+        <div x-data="sidebar()" id="wrapper">
 
-            <x-sidebar.admin />
+            <x-sidebar.admin x-show="isOpen()" @click.away="close" />
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -36,7 +39,7 @@
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                         <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <button x-on:click="open" id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
 
@@ -159,6 +162,38 @@
     </div>
 
     @yield('scripts')
+    <script>
+
+        window.addEventListener('resize', event => {
+            const width = window.innerWidth;
+        })
+
+        function sidebar(){
+
+
+            const width = window.innerWidth;
+
+            let showSidebar = null;
+
+            if(width < 768) showSidebar = false;
+            else showSidebar = true;
+
+
+            return {
+
+                show: showSidebar,
+
+                open(){ 
+                    console.log("Show")
+                    this.show = !this.show 
+                },
+                close: () => { this.show = false },
+                isOpen(){
+                    return this.show === true
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
