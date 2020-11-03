@@ -82,11 +82,11 @@ class AdminRolesManagementTest extends TestCase
         ]));
 
         //Assert
-        $this->assertCount(1, Role::all());
-        $this->assertCount(3, Role::first()->permissions);
+        $this->assertCount(2, Role::all());
+        $this->assertCount(3, Role::findOrFail(2)->permissions);
 
-        $this->assertEquals($roleData['title'], Role::first()->title);
-        $this->assertEquals($roleData['description'], Role::first()->description);
+        $this->assertEquals($roleData['title'], Role::findOrFail(2)->title);
+        $this->assertEquals($roleData['description'], Role::findOrFail(2)->description);
 
         $response->assertRedirect('/admin/roles');
 
@@ -145,11 +145,11 @@ class AdminRolesManagementTest extends TestCase
         ));
 
         //Assert
-        $this->assertCount(1, Role::all());
-        $this->assertCount(2, Role::first()->permissions);
+        $this->assertCount(2, Role::all());
+        $this->assertCount(2, Role::findOrFail(2)->permissions);
 
-        $this->assertEquals($roleData['title'], Role::first()->title);
-        $this->assertEquals($roleData['description'], Role::first()->description);
+        $this->assertEquals($roleData['title'], Role::findOrFail(2)->title);
+        $this->assertEquals($roleData['description'], Role::findOrFail(2)->description);
 
         $response->assertRedirect('/admin/roles');
     }
@@ -172,7 +172,7 @@ class AdminRolesManagementTest extends TestCase
         $response = $this->delete('/admin/roles/' . $role->id);
 
         //Assert
-        $this->assertCount(0, Role::all());
+        $this->assertCount(1, Role::all());
         $this->assertCount(3, Permission::all());
         $this->assertCount(0, DB::table('permission_role')->get());
 
