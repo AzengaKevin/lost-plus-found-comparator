@@ -49,8 +49,7 @@
         <div id="counties-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Locations</a>
-                <a class="collapse-item" href="#">Add Locations</a>
+                <a class="collapse-item" href="{{ route('admin.locations.index') }}">Browse Locations</a>
             </div>
         </div>
     </li>

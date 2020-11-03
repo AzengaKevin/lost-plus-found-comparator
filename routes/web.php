@@ -40,4 +40,8 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
     Route::get('permissions', PermissionsController::class)
         ->name('permissions.index');
+
+    Route::get('locations', LocationsController::class)
+        ->name('locations.index');
+    
 });
