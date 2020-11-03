@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Role;
 use App\User;
 use App\Officer;
 use App\Station;
@@ -53,8 +54,14 @@ class OfficersController extends Controller
             'officer_number' => ['required'],
         ]);
 
+        $role = Role::firstOrCreate([
+            'title' => 'officer',
+            'description' => 'With this, you.ve got some real power on the site, though not that powerful'
+        ]);
+
         $user = User::create(array_merge($data, [
             'password' => Hash::make('password'),
+            'role_id' => $role->id
         ]));
 
         $user->officer()->create(array_merge($data, [
