@@ -44,13 +44,13 @@ class OfficersController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => [],
-            'email' => [],
-            'phone_number' => [],
-            'national_identification_number' => [],
-            'station_id' => [],
+            'name' => ['required'],
+            'email' => ['required'],
+            'phone_number' => ['required'],
+            'national_identification_number' => ['required'],
+            'station_id' => ['required'],
             'ocs' => [],
-            'officer_number' => [],
+            'officer_number' => ['required'],
         ]);
 
         $user = User::create(array_merge($data, [

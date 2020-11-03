@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <img class="rounded-circle" src="{{ asset('img/avatar.jpg') }}" height="48" alt="IEBC Logo">
         </div>
-        <div class="sidebar-brand-text mx-3">Admin</div>
+        <div class="sidebar-brand-text mx-3">Officer</div>
     </a>
 
     <hr class="sidebar-divider my-0">

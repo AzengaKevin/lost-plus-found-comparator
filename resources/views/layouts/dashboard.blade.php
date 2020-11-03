@@ -27,7 +27,12 @@
         <!-- Page Wrapper -->
         <div x-data="sidebar()" id="wrapper">
 
-            <x-sidebar.admin x-show="isOpen()" @click.away="close" />
+            @can('access-admin-dashboard')
+                <x-sidebar.admin x-show="isOpen()" @click.away="close" />
+            @endcan
+            @can('access-officer-dashboard')
+                <x-sidebar.officer x-show="isOpen()" @click.away="close" />
+            @endcan
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">

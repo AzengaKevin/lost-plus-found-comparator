@@ -9,6 +9,10 @@ class Station extends Model
     protected $fillable = ['name', 'location', 'lat', 'lng'];
 
 
+    public function officers()
+    {
+        return $this->hasMany(Officer::class);
+    }
 
     /**
      * Helper and Util methods

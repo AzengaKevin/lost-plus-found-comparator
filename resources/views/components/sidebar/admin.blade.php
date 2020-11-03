@@ -109,6 +109,23 @@
         </div>
     </li>                 
 
+    <!-- Officers -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#officers-dropdown"
+            aria-expanded="true" aria-controls="officers-dropdown">
+            <i class="fa fa-fw fa-users"></i>
+            <span>Officers</span>
+        </a>
+        <div id="officers-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quick Actions</h6>
+                <a class="collapse-item" href="{{ route('admin.officers.index') }}">Browse Officers</a>
+                <a class="collapse-item" href="{{ route('admin.officers.create') }}">Add Officer</a>
+            </div>
+        </div>
+    </li>
+        
+
 
 
     <!-- Sidebar Toggler (Sidebar) -->
