@@ -25,8 +25,7 @@ Auth::routes(['verified' => true, 'register' => false]);
 |--------------------------------------------------------------------------
 | Admin routes
 |--------------------------------------------------------------------------
-| Here is where all the public routes that does not need authentication
-| goes
+| Here is where all the routes that belong to only the admin go
 |
 */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
@@ -43,5 +42,18 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
     Route::get('locations', LocationsController::class)
         ->name('locations.index');
+    
+});
+
+/*
+|--------------------------------------------------------------------------
+| Oficer routes
+|--------------------------------------------------------------------------
+| Here is where all the officer routes go
+|
+*/
+Route::group(['middleware' => ['auth'], 'namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.'], function(){
+
+    Route::get('/dashboard', 'DashboardController')->name('dashboard');
     
 });
