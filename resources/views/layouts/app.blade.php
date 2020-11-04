@@ -8,7 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @if(View::hasSection('title'))
+            @yield('title') - 
+        @endif
+        {{ config('app.name', 'Lost + Found') }}
+    </title>
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -66,6 +72,8 @@
                                 @can('access-officer-dashboard')
                                 <a href="{{ route('officer.dashboard') }}" class="dropdown-item">Dashboard</a>
                                 @endcan
+
+                                <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Profile</a>
 
                                 <a class="dropdown-item" href="#" role="button" data-toggle="modal"
                                     data-target="#logoutModal">

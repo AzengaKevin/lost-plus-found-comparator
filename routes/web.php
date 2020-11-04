@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 /*
 |--------------------------------------------------------------------------
-| Oficer routes
+| Officer routes
 |--------------------------------------------------------------------------
 | Here is where all the officer routes go
 |
@@ -57,3 +57,17 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Officer', 'prefix' => 'o
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
     
 });
+
+/*
+|--------------------------------------------------------------------------
+| All Users Routes
+|--------------------------------------------------------------------------
+| Routes that all authenticated users have access to
+|
+*/
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::get('/user/{user}', 'UsersController@show')->name('users.show');
+    
+});
+
