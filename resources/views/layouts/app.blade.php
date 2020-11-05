@@ -73,7 +73,9 @@
                                 <a href="{{ route('officer.dashboard') }}" class="dropdown-item">Dashboard</a>
                                 @endcan
 
-                                <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">Profile</a>
+                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="dropdown-item">Profile</a>
+                                
+                                <a href="{{ route('users.profile.settings', Auth::user()) }}" class="dropdown-item">Settings</a>
 
                                 <a class="dropdown-item" href="#" role="button" data-toggle="modal"
                                     data-target="#logoutModal">

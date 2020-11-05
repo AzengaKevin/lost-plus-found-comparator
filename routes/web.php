@@ -67,7 +67,10 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Officer', 'prefix' => 'o
 */
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('/user/{user}', 'UsersController@show')->name('users.show');
+    Route::get('/user/{user}/profile', 'UsersController@showProfileInformation')
+        ->name('users.profile.show');
+    Route::get('/user/{user}/settings', 'UsersController@showProfileSettings')
+        ->name('users.profile.settings');
     
 });
 

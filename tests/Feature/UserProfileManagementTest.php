@@ -32,16 +32,18 @@ class UserProfileManagementTest extends TestCase
         $this->withoutExceptionHandling();
 
         //Act
-        $response = $this->get('/user/' . $this->user->id);
+        $response = $this->get(route('users.profile.show', $this->user));
 
         //Assert
         $response->assertOk();
-        $response->assertViewIs('users.show');
+        $response->assertViewIs('users.show.information');
         $response->assertViewHas('user');
     }
 
     /**
      * @test
+     * 
+     * @group profile
      */
     public function user_blocked_from_seeing_others_profiles()
     {
@@ -51,12 +53,45 @@ class UserProfileManagementTest extends TestCase
         $user = factory(User::class)->create();
 
         //Act
-        $response = $this->get('/user/' . $user->id);
+        $response = $this->get(route('users.profile.show', $user));
+
+    }
+
+
+    /**
+     * @test
+     * 
+     * @group profile
+     */
+    public function user_can_visit_profile_own_settings()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+
+        //Act
+        $response = $this->get(route('users.profile.settings', $this->user));
 
         //Assert
         $response->assertOk();
-        $response->assertViewIs('users.show');
+        $response->assertViewIs('users.show.settings');
         $response->assertViewHas('user');
 
     }
+
+    /**
+     * @test
+     * 
+     * @group profile
+     */
+    public function malicious_users_bocked_seeing_others_profiles()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        $this->expectException(AuthorizationException::class);
+        $user = factory(User::class)->create();
+
+        //Act
+        $response = $this->get(route('users.profile.settings', $user));
+
+    }    
 }

@@ -9,17 +9,25 @@ class UsersController extends Controller
 {
 
     /**
-     * Display the specified resource.
+     * Display the user profile information
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function showProfileInformation(User $user)
     {
-        $this->authorize('view', $user);
+        $this->authorize('update', $user);
 
-        return view('users.show', compact('user'));
+        return view('users.show.information', compact('user'));
     }
+
+    public function showProfileSettings(User $user)
+    {
+        $this->authorize('delete', $user);
+
+        return view('users.show.settings', compact('user'));
+
+    }    
 
     /**
      * Show the form for editing the specified resource.
