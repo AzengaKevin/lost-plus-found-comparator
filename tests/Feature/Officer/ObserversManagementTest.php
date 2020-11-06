@@ -44,6 +44,30 @@ class ObserversManagementTest extends TestCase
 
         //Assertions
         $response->assertOk();
-        $response->assertViewIs('officers.observers.index');
+        $response->assertViewIs('officer.observers.index');
+    }
+
+   
+    /**
+     * @test
+     * 
+     * @group observers
+     */
+    public function officer_can_view_create_observers_page()
+    {
+        //Arrange
+        $this->withoutExceptionHandling();
+        //Authenticate the officer
+        $this->be(factory(User::class)->create([
+            'role_id' => $this->role->id,
+        ]));
+
+        //Act
+        $response = $this->get(route('officer.observers.create'));
+
+        //Assertions
+        $response->assertOk();
+        $response->assertViewIs('officer.observers.create');
+
     }
 }

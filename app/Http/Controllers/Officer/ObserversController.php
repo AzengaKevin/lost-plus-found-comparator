@@ -15,7 +15,7 @@ class ObserversController extends Controller
      */
     public function index()
     {
-        return view('officers.observers.index');
+        return view('officer.observers.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class ObserversController extends Controller
      */
     public function create()
     {
-        //
+        return view('officer.observers.create');
     }
 
     /**

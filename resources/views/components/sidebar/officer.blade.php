@@ -23,7 +23,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#officers-dropdown"
             aria-expanded="true" aria-controls="officers-dropdown">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fas fa-fw fa-users-cog"></i>
             <span>Station Officers</span>
         </a>
         <div id="officers-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -37,12 +37,30 @@
 
     <hr class="sidebar-divider">
 
+    <!-- Observers -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#observers-dropdown"
+            aria-expanded="true" aria-controls="observers-dropdown">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Case Observers</span>
+        </a>
+        <div id="observers-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quick Actions</h6>
+                <a class="collapse-item" href="{{ route('officer.observers.index') }}">Browse Observers</a>
+                <a class="collapse-item" href="#">Add Observer</a>
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
+
     <div class="sidebar-heading">Cases</div>
 
     <!-- Station Cases -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cases-dropdown"
-            aria-expanded="true" aria-controls="cases-dropdown">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cases-dropdown" aria-expanded="true"
+            aria-controls="cases-dropdown">
             <i class="fa fa-fw fa-folder"></i>
             <span>Our Cases</span>
         </a>
@@ -53,6 +71,6 @@
                 <a class="collapse-item" href="#">Add Case</a>
             </div>
         </div>
-    </li>                       
-               
+    </li>
+
 </ul>

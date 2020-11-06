@@ -18,6 +18,6 @@ class DashboardController extends Controller
     {
         Gate::authorize('access-officer-dashboard');
         
-        return view('officers.dashboard');
+        return view('officer.dashboard');
     }
 }

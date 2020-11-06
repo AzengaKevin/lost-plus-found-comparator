@@ -44,7 +44,7 @@ class DashboardTest extends TestCase
 
         $response->assertOk();
 
-        $response->assertViewIs('officers.dashboard');
+        $response->assertViewIs('officer.dashboard');
     }
 
     /**
