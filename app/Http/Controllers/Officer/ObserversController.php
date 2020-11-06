@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Officer;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreObserverRequest;
 
 class ObserversController extends Controller
@@ -37,7 +39,19 @@ class ObserversController extends Controller
      */
     public function store(StoreObserverRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $role = Role::firstOrCreate([
+            'title' => 'default',
+            'description' => 'No powers, just a regular dude, with power of your profile only'
+        ]);
+
+        $user = User::create(array_merge($data, [
+            'password' => Hash::make('password'),
+            'role_id' => $role->id
+        ]));
+
+        return redirect()->route('officer.observers.index');
     }
 
     /**
