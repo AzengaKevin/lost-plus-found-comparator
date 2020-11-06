@@ -45,6 +45,7 @@ class ObserversManagementTest extends TestCase
         //Assertions
         $response->assertOk();
         $response->assertViewIs('officer.observers.index');
+        $response->assertViewHas('users');
     }
 
    
