@@ -98,17 +98,41 @@
                         <div class="d-flex justify-content-between">
                             <span class="text-muted">Last Seen With (Optional)</span>
                             <div>
-                                <button class="btn btn-sm btn-info">Add</button>
-                                <button class="btn btn-sm btn-warning">Remove</button>
+                                <button type="button" wire:click="changeLastSeenWith(+1)" class="btn btn-sm btn-info">Add</button>
+                                <button type="button" wire:click="changeLastSeenWith(-1)" class="btn btn-sm btn-warning">Remove</button>
                             </div>
                         </div>
 
-                        <div class="row collapse">
-                            <div class="col-md-6 mb-3">
-                                <label for="personName" class="text-gray-700 font-weight-bold">
-                                    <span>Name</span>&nbsp;<span class="text-danger">*</span>
-                                </label>
-                                <input type="text" id="personName" class="form-control">
+                        <div class="row {{ ($lastSeenWithCount <= 0) ? 'collapse' : '' }}">
+                            @for ($i = 0; $i < $lastSeenWithCount; $i++)
+                                <div class="col-md-6 mb-3">
+                                    <label for="personName{{ $i }}" class="text-gray-700 font-weight-bold">
+                                        <span>Name</span>&nbsp;<span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" id="personName{{ $i }}" class="form-control">
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="text-gray-800">Preliminary Details</h4>
+            <span>Social media accounts and handles for the lost person</span>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Social Media Accounts (Optional)</span>
+                            <div>
+                                <button type="button" wire:click="changeSocialMediaAccountsCount(+1)" class="btn btn-sm btn-info">Add</button>
+                                <button type="button" wire:click="changeSocialMediaAccountsCount(-1)" class="btn btn-sm btn-warning">Remove</button>
                             </div>
                         </div>
                     </div>

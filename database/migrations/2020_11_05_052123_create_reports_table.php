@@ -26,7 +26,7 @@ class CreateReportsTable extends Migration
             $table->date('person_date_of_birth');
             $table->datetime('last_seen');
             $table->string('last_seen_place');
-            $table->string('last_seen_with')->nullable();
+            $table->json('last_seen_with')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
