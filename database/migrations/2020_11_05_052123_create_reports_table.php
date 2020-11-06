@@ -15,6 +15,8 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('officer_id')->constrained()
+                ->onDelete('cascade');
             $table->string('person_name');
             $table->string('person_national_identification_number')->nullable();
             $table->string('person_birth_certificate_number')->nullable();
@@ -25,6 +27,7 @@ class CreateReportsTable extends Migration
             $table->datetime('last_seen');
             $table->string('last_seen_place');
             $table->string('last_seen_with')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
