@@ -42,13 +42,13 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#observers-dropdown"
             aria-expanded="true" aria-controls="observers-dropdown">
             <i class="fas fa-fw fa-users"></i>
-            <span>Case Observers</span>
+            <span>Cases Observers</span>
         </a>
         <div id="observers-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
                 <a class="collapse-item" href="{{ route('officer.observers.index') }}">Browse Observers</a>
-                <a class="collapse-item" href="#">Add Observer</a>
+                <a class="collapse-item" href="{{ route('officer.observers.create') }}">Add Observer</a>
             </div>
         </div>
     </li>

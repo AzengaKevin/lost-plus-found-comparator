@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Officer;
 
-use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreObserverRequest;
 
 class ObserversController extends Controller
 {
@@ -31,10 +32,10 @@ class ObserversController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\StoreObserverRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreObserverRequest $request)
     {
         //
     }
