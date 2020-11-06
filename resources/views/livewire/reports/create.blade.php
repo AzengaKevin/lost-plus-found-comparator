@@ -70,4 +70,50 @@
             </div>
         </div>
     </div>
+    <hr class="my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="text-gray-800">Last Seen Information</h4>
+            <span>Information about where the person was last seen</span>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="text-gray-700 font-weight-bold" for="lastSeen">
+                                    <span>Date</span>&nbsp;<span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="lastSeen" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="place" class="text-gray-700 font-weight-bold">
+                                    <span>Place</span>&nbsp;<span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="place" class="form-control">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Last Seen With (Optional)</span>
+                            <div>
+                                <button class="btn btn-sm btn-info">Add</button>
+                                <button class="btn btn-sm btn-warning">Remove</button>
+                            </div>
+                        </div>
+
+                        <div class="row collapse">
+                            <div class="col-md-6 mb-3">
+                                <label for="personName" class="text-gray-700 font-weight-bold">
+                                    <span>Name</span>&nbsp;<span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="personName" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
