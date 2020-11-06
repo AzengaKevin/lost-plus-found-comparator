@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Officer', 'prefix' => 'o
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
     Route::resource('observers', 'ObserversController');
     
+    Route::resource('reports', 'ReportsController');
 });
 
 /*
