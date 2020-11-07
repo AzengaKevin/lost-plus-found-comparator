@@ -52,12 +52,38 @@ class ReportsController extends Controller
     {
         $data = $request->validated();
 
-        $data['extra_items'] = json_encode($data['extra_items']);
+        // dd($data);
+
+        $extraItems = [];
+
+        if(isset($data['keys']) && isset($data['keys'])){
+
+            if(count($data['keys']) === count($data['values'])){
+
+                $keys = $data['keys'];
+                $values = $data['values'];
+                
+                for ($i=0; $i < count($data['keys']); $i++) { 
+                    $extraItems[$keys[$i]] = $values[$i];
+                }
+
+            }else{
+                Log::warning('Mismatch in keys and values count');
+            }
+        }else{
+            Log::notice('Keys and / or values not set');
+        }
+
+        if(!empty($extraItems)){
+            $data['extra_items'] = json_encode($extraItems);
+        }
+
         $data['last_seen_with'] = json_encode($data['last_seen_with']);
         $data['officer_id'] = $request->user()->officer->id;
         $data['station_id'] = $request->user()->officer->station_id;
         
         $report = Report::create($data);
+
         Log::info('Report created, ID: ' . $report->id);
 
         return redirect()->route('officer.reports.index');

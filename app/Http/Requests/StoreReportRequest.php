@@ -26,15 +26,16 @@ class StoreReportRequest extends FormRequest
 
         return [
             'person_name' => ['required'],
-            'person_national_identification_number' => ['numeric'],
-            'person_birth_certificate_number' => ['required_unless:person_national_identification_number,true'],
-            'person_passport_number' => ['required_unless:person_birth_certificate_number,true'],
+            'person_national_identification_number' => ['nullable', 'numeric'],
+            'person_birth_certificate_number' => ['nullable'],
+            'person_passport_number' => ['nullable'],
             'person_phone_number' => ['bail', 'numeric', 'nullable'],
             'person_date_of_birth' => ['bail', 'required' ,'date'],
-            'extra_items' => ['array'],
-            'last_seen' => ['bail', 'date'],
-            'last_seen_place' => ['bail', 'required'],
-            'last_seen_with' => ['array'],
+            'keys' => ['nullable', 'array'],
+            'values' => ['nullable', 'array'],
+            'last_seen' => ['bail','required', 'date'],
+            'last_seen_place' => ['bail', 'required', 'required'],
+            'last_seen_with' => ['array', 'nullable'],
         ];
     }
 }
