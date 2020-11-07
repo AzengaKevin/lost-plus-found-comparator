@@ -2,9 +2,10 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -38,9 +39,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function image()
+    public function profilePicture()
     {
-        return '/img/avatar.jpg';
+        return is_null($this->file)
+            ? "https://ui-avatars.com/api/?background=random&size=256"
+            : Storage::disk('s3')->url($this->file->path);
     }
 
     public function officer()
@@ -59,7 +62,7 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
-    public function photo()
+    public function file()
     {        
         return $this->morphOne(File::class, 'fileable');
 

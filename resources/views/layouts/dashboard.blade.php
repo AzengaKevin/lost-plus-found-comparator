@@ -76,7 +76,7 @@
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img height="40" width="40" class="rounded-circle"
-                                    src="{{ asset(Auth::user()->image()) }}" alt="User Profile Pic">
+                                    src="{{ asset(Auth::user()->profilePicture()) }}" alt="User Profile Pic">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

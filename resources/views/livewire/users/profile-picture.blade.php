@@ -13,7 +13,7 @@
                                 <label for="photo" class="text-gray-800 font-weight-bold">Profile Photo</label>
                             </div>
                             <div class="mt-2">
-                                <img class="rounded-circle" src="{{ $photo ? $photo->temporaryUrl() : Auth::user()->image() }}" width="200"
+                                <img class="rounded-circle" src="{{ $photo ? $photo->temporaryUrl() : Auth::user()->profilePicture() }}" width="200"
                                     alt="{{ Auth::user()->name }}">
                             </div>
 

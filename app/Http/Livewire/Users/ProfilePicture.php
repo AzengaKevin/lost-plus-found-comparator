@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Users;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class ProfilePicture extends Component
@@ -28,9 +29,9 @@ class ProfilePicture extends Component
             Auth::user()->photo->deleteFile();
 
         //Saving the file logic
-        $filePath = $this->photo->store('profile-photos');
+        $filePath = $this->photo->store('profile-photos', 's3');
 
-        Auth::user()->photo()->create([
+        $file = Auth::user()->file()->create([
             'path' => $filePath,
         ]);
     }
