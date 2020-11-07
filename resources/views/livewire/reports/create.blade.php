@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form class="py-3" action="" method="post">
     <div class="row">
         <div class="col-md-4">
             <h4 class="text-gray-800">Personal Details</h4>
@@ -98,19 +98,24 @@
                         <div class="d-flex justify-content-between">
                             <span class="text-muted">Last Seen With (Optional)</span>
                             <div>
-                                <button type="button" wire:click="changeLastSeenWith(+1)" class="btn btn-sm btn-info">Add</button>
-                                <button type="button" wire:click="changeLastSeenWith(-1)" class="btn btn-sm btn-warning">Remove</button>
+                                <button type="button" wire:click="changeLastSeenWith(+1)" class="btn btn-sm btn-info">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button type="button" wire:click="changeLastSeenWith(-1)"
+                                    class="btn btn-sm btn-warning">
+                                    <i class="fa fa-minus"></i>
+                                </button>
                             </div>
                         </div>
 
                         <div class="row {{ ($lastSeenWithCount <= 0) ? 'collapse' : '' }}">
-                            @for ($i = 0; $i < $lastSeenWithCount; $i++)
-                                <div class="col-md-6 mb-3">
-                                    <label for="personName{{ $i }}" class="text-gray-700 font-weight-bold">
-                                        <span>Name</span>&nbsp;<span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" id="personName{{ $i }}" class="form-control">
-                                </div>
+                            @for ($i = 0; $i < $lastSeenWithCount; $i++) 
+                            <div class="col-md-6 mb-3">
+                                <label for="personName{{ $i }}" class="text-gray-700 font-weight-bold">
+                                    <span>Name</span>&nbsp;<span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="personName{{ $i }}" class="form-control">
+                            </div>
                             @endfor
                         </div>
                     </div>
@@ -122,18 +127,48 @@
     <div class="row">
         <div class="col-md-4">
             <h4 class="text-gray-800">Preliminary Details</h4>
-            <span>Social media accounts and handles for the lost person</span>
+            <span>All you remembe about the person in the last days, beefs, enemies, coduct, dressing and what have
+                you</span>
         </div>
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="card-text">
                         <div class="d-flex justify-content-between">
-                            <span class="text-muted">Social Media Accounts (Optional)</span>
+                            <span class="text-muted">Extra custom details about the case (Optional)</span>
                             <div>
-                                <button type="button" wire:click="changeSocialMediaAccountsCount(+1)" class="btn btn-sm btn-info">Add</button>
-                                <button type="button" wire:click="changeSocialMediaAccountsCount(-1)" class="btn btn-sm btn-warning">Remove</button>
+                                <button type="button" wire:click="changePreliminaryItemsCount(+1)"
+                                    class="btn btn-sm btn-info">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button type="button" wire:click="changePreliminaryItemsCount(-1)"
+                                    class="btn btn-sm btn-warning">
+                                    <i class="fa fa-minus"></i>
+                                </button>
                             </div>
+                        </div>
+                        <datalist id="keys">
+                            <option value="Facebook" />
+                            <option value="Twitter" />
+                            <option value="Instagram" />
+                            <option value="Email" />
+                            <option value="Cloths Colors" />
+                            <option value="Mood" />
+                            <option value="Financial Status" />
+                            <option value="Enemies" />
+                            <option value="Friends" />
+                        </datalist>
+                        <div class="mt-3 {{ ($preliminaryItemsCount <= 0) ? 'collapse' : '' }}">
+                            @for ($i = 0; $i < $preliminaryItemsCount; $i++) 
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <input list="keys" class="form-control" type="text" id="item{{ $i }}key" placeholder="Key">
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" id="item{{ $i }}value" class="form-control" placeholder="Item">
+                                </div>
+                            </div>
+                            @endfor
                         </div>
                     </div>
                 </div>

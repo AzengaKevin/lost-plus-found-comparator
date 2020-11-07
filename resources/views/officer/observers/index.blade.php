@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div class="container">
+<div>
     @if ($users->count())
     <div class="table-responsive">
         <table class="table table-striped">
@@ -32,7 +32,9 @@
                     <td>{{ $user->national_identification_number }}</td>
                     <td>
                         <form action="{{ route('officer.observers.destroy', $user) }}" method="post">
-                            <button type="submit" class="btn btn-sm btn-danger ml-3">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger ml-3">
+                                <i class="fa fa-trash-alt"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>

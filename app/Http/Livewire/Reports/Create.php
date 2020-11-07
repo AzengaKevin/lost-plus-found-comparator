@@ -7,7 +7,7 @@ use Livewire\Component;
 class Create extends Component
 {
     public $lastSeenWithCount = 0;
-    public $socialMediaAccountsCount = 0;
+    public $preliminaryItemsCount = 0;
 
     public function render()
     {
@@ -19,8 +19,8 @@ class Create extends Component
         $this->lastSeenWithCount += $value;
     }
 
-    public function changeSocialMediaAccountsCount(int $value)
+    public function changePreliminaryItemsCount(int $value)
     {
-        $this->socialMediaAccountsCount += $value;
+        $this->preliminaryItemsCount += $value;
     }
 }

@@ -3,7 +3,7 @@
 @section('title', 'Add Observer')
 
 @section('content')
-<div class="container">
+<div>
     <form action="{{ route('officer.observers.store') }}" method="post">
         @csrf
 
