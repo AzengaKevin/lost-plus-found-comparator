@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
     Route::get('locations', LocationsController::class)
         ->name('locations.index');
+
+    Route::resource('items', 'ItemsController')
+        ->only(['index', 'store', 'destroy']);
     
 });
 

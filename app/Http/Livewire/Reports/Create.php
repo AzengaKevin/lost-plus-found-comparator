@@ -2,12 +2,20 @@
 
 namespace App\Http\Livewire\Reports;
 
+use App\Item;
 use Livewire\Component;
 
 class Create extends Component
 {
     public $lastSeenWithCount = 0;
     public $preliminaryItemsCount = 0;
+    public $items = [];
+
+    public function mount()
+    {
+        $this->items = Item::all();
+
+    }
 
     public function render()
     {

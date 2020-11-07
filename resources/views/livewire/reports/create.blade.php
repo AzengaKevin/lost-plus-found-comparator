@@ -148,15 +148,9 @@
                             </div>
                         </div>
                         <datalist id="keys">
-                            <option value="Facebook" />
-                            <option value="Twitter" />
-                            <option value="Instagram" />
-                            <option value="Email" />
-                            <option value="Cloths Colors" />
-                            <option value="Mood" />
-                            <option value="Financial Status" />
-                            <option value="Enemies" />
-                            <option value="Friends" />
+                            @foreach ($items as $item)
+                                <option value="{{ $item->key }}" />
+                            @endforeach
                         </datalist>
                         <div class="mt-3 {{ ($preliminaryItemsCount <= 0) ? 'collapse' : '' }}">
                             @for ($i = 0; $i < $preliminaryItemsCount; $i++) 
