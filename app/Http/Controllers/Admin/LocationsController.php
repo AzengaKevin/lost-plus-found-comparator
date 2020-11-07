@@ -17,8 +17,8 @@ class LocationsController extends Controller
     public function __invoke(Request $request)
     {
         $locations = DB::table('stations')
-            ->select('location')
-            ->distinct()
+            ->selectRaw("location, COUNT(id) AS station_count")
+            ->groupBy('location')
             ->get();
 
         return view('admin.locations.index', compact('locations'));

@@ -33,10 +33,14 @@
                                 <td>{{ $station->updated_at->format('m/d/Y') }}</td>
                                 <td>{{ $station->created_at->format('m/d/Y') }}</td>
                                 <td class="d-flex">
-                                    <a href="{{ route('admin.stations.show', $station) }}" class="btn btn-sm btn-primary">Show</a>
+                                    <a href="{{ route('admin.stations.show', $station) }}" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
 
                                     <form action="{{ route('admin.stations.destroy', $station) }}" method="post">
-                                        <button type="submit" class="btn btn-sm btn-danger ml-3">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger ml-3">
+                                            <i class="fa fa-trash-alt"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
