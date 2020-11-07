@@ -10,6 +10,7 @@ class Create extends Component
     public $lastSeenWithCount = 0;
     public $preliminaryItemsCount = 0;
     public $items = [];
+    public $users = [];
 
     public function mount()
     {

@@ -189,6 +189,37 @@
         </div>
     </div>
 
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="text-gray-800">Subscribers</h4>
+            <span>Who are the reporters and ones following up the case</span>
+        </div>
+        <div class="col-md-8">
+            <div class="card bg-white rounded-lg shadow-sm">
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label for="observers" class="font-weight-bold text-gray-700">Observers</label>
+                        </div>
+                        <select name="observers[]" id="observers" multiple data-live-search="true"
+                            class="form-control observers-select @error('observers') is-invalid @enderror">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('observers')
+                        <span class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row py-5">
         <div class="col-md-12">
             <button class="btn btn-lg btn-info btn-block">Submit</button>

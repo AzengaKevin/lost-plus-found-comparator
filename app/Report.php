@@ -27,4 +27,11 @@ class Report extends Model
     protected $casts = [
         'last_seen_with' => 'array',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->as('observers')
+            ->withTimestamps();
+    }
 }

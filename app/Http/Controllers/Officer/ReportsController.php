@@ -84,6 +84,8 @@ class ReportsController extends Controller
         
         $report = Report::create($data);
 
+        $report->users()->attach($data['observers']);
+
         Log::info('Report created, ID: ' . $report->id);
 
         return redirect()->route('officer.reports.index');

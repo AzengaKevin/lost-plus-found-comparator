@@ -53,6 +53,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function reports()
+    {
+        return $this->belongsToMany(Report::class)
+            ->withTimestamps();
+    }
+
     public function photo()
     {
         return "/img/avatar.jpg";

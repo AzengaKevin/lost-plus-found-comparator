@@ -79,10 +79,17 @@ class ReportsManagementTest extends TestCase
 
         $this->be($this->user);
         $reportData = factory(Report::class)->make()->toArray();
+        $observers = factory(User::class, 3)->create()->pluck('id')->toArray();
 
-        $response = $this->post(route('officer.reports.store'), $reportData);
+        $response = $this->post(route('officer.reports.store'), array_merge(
+            $reportData, [
+                'observers' => $observers
+            ]
+        ));
         
         $this->assertCount(1, Report::all());
+
+        $this->assertCount(3, Report::first()->users);
 
         $response->assertRedirect(route('officer.reports.index'));
     }

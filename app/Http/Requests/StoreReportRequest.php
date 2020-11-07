@@ -36,6 +36,8 @@ class StoreReportRequest extends FormRequest
             'last_seen' => ['bail','required', 'date'],
             'last_seen_place' => ['bail', 'required', 'required'],
             'last_seen_with' => ['array', 'nullable'],
+            'observers' => ['bail', 'required', 'array'],
+            'observers.*' => ['integer'],
         ];
     }
 }
