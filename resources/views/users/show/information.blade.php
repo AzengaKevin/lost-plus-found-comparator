@@ -4,30 +4,7 @@
 
 @section('content')
 <div class="container">
-    <div id="profile-information" class="row">
-        <div class="col-md-4">
-            <h4 class="text-gray-900 font-weight-bold">Profile Photo Section</h4>
-            <span>Update your account's profile photo</span>
-        </div>
-        <div class="col-md-8">
-            <div class="card bg-white rounded shadow-sm">
-                <div class="card-body">
-                    <div class="card-text">
-                        <div>
-                            <div>
-                                <label for="photo" class="text-gray-800 font-weight-bold">Photo</label>
-                            </div>
-                            <div class="mt-2">
-                                <img class="rounded-circle" src="{{ Auth::user()->photo() }}" width="200"
-                                    alt="{{ Auth::user()->name }}">
-                            </div>
-                            <button class="btn btn-light text-uppercase mt-2">Select A New Photo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @livewire('users.profile-picture')
     <hr class="my-5">
 
     <div class="row">

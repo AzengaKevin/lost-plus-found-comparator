@@ -60,7 +60,9 @@ class User extends Authenticatable
     }
 
     public function photo()
-    {
-        return "/img/avatar.jpg";
+    {        
+        return $this->morphOne(File::class, 'fileable');
+
     }
+    
 }
