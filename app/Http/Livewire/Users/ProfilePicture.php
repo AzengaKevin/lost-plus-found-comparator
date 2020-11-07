@@ -29,10 +29,12 @@ class ProfilePicture extends Component
             Auth::user()->photo->deleteFile();
 
         //Saving the file logic
-        $filePath = $this->photo->store('profile-photos', 's3');
+        $filePath = $this->photo->store('profile-photos', 'public');
 
         $file = Auth::user()->file()->create([
             'path' => $filePath,
         ]);
+
+        //dd($file);
     }
 }

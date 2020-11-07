@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,7 +44,7 @@ class User extends Authenticatable
     {
         return is_null($this->file)
             ? "https://ui-avatars.com/api/?background=random&size=256"
-            : Storage::disk('s3')->url($this->file->path);
+            : Storage::disk('public')->url($this->file->path);
     }
 
     public function officer()

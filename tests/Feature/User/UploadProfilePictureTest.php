@@ -37,7 +37,8 @@ class UploadProfilePictureTest extends TestCase
     public function user_can_upload_profile_picture()
     {
         //Arrange
-        Storage::fake('s3');
+        Storage::fake('public');
+
         $file = UploadedFile::fake()->image('avatar.png');
 
         //Act
@@ -47,8 +48,8 @@ class UploadProfilePictureTest extends TestCase
             
         //Assert
         $this->assertCount(1, File::all());
-        Storage::disk('s3')->assertExists(File::first()->path);
-        $this->assertNotNull($this->user->file);
+        Storage::disk('disk')->assertExists(File::first()->path);
+        $this->assertNotNull($this->user->fresh()->file);
 
     }
 }
