@@ -6,7 +6,9 @@ use App\Role;
 use App\User;
 use App\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReportRequest;
 
 class ReportsController extends Controller
 {
@@ -43,12 +45,23 @@ class ReportsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\StoreReportRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReportRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['extra_items'] = json_encode($data['extra_items']);
+        $data['last_seen_with'] = json_encode($data['last_seen_with']);
+        $data['officer_id'] = $request->user()->officer->id;
+        $data['station_id'] = $request->user()->officer->station_id;
+        
+        $report = Report::create($data);
+        Log::info('Report created, ID: ' . $report->id);
+
+        return redirect()->route('officer.reports.index');
+        
     }
 
     /**

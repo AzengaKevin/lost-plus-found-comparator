@@ -24,7 +24,7 @@ class CreateReportsTable extends Migration
             $table->string('person_birth_certificate_number')->nullable();
             $table->string('person_passport_number')->nullable();
             $table->string('person_phone_number')->nullable();
-            $table->json('social_media_accounts')->nullable();
+            $table->json('extra_items')->nullable();
             $table->date('person_date_of_birth');
             $table->datetime('last_seen');
             $table->string('last_seen_place');
