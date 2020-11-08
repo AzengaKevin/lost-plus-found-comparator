@@ -37,7 +37,7 @@ class ProfileInformation extends Component
     }
 
     public function save()
-    {
+    {   
         $data = $this->validate();
 
         if(($data['email'] !== Auth::user()->email) && (Auth::user() instanceof MustVerifyEmail)){
@@ -47,7 +47,7 @@ class ProfileInformation extends Component
                     ['email_verified_at' => null]
                 )
             )->save();
-            
+
             Auth::user()->sendEmailVerificationNotification();
 
         }else{
