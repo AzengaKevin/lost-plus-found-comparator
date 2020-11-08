@@ -37,6 +37,7 @@ class UploadProfilePictureTest extends TestCase
     public function user_can_upload_profile_picture()
     {
         //Arrange
+        $this->withoutExceptionHandling();
         Storage::fake('public');
 
         $file = UploadedFile::fake()->image('avatar.png');

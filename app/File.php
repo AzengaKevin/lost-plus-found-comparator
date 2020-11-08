@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,20 +32,14 @@ class File extends Model
     public function deleteFile()
     {
         if(!is_null($this->path)){
-            if(Storage::exists($this->path)){
-                Storage::delete($this->path);
-
-                //Debugging
-                Log::info('File deleted from disk');
+            if(Storage::disk('public')->exists($this->path)){
+                Storage::disk('public')->delete($this->path);
             }
         }
 
         if(!is_null($this->thumb_path)){
-            if(Storage::exists($this->thumb_path)){
-                Storage::delete($this->thumb_path);
-
-                //Debugging
-                Log::info('Thumb file deleted from disk');
+            if(Storage::disk('public')->exists($this->thumb_path)){
+                Storage::disk('public')->delete($this->thumb_path);
             }
         }
     }

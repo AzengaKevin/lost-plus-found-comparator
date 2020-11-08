@@ -25,8 +25,14 @@ class ProfilePicture extends Component
         ]);
 
         //Check whether the user has profile picture
-        if(!is_null(Auth::user()->photo))
-            Auth::user()->photo->deleteFile();
+        if(!is_null(Auth::user()->file)){
+            //Delete the file from storage
+            Auth::user()->file->deleteFile();
+            //Delete the record
+            Auth::user()->file->delete();
+        }else{
+
+        }
 
         //Saving the file logic
         $filePath = $this->photo->store('profile-photos', 'public');
@@ -34,7 +40,5 @@ class ProfilePicture extends Component
         $file = Auth::user()->file()->create([
             'path' => $filePath,
         ]);
-
-        //dd($file);
     }
 }

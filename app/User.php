@@ -43,7 +43,7 @@ class User extends Authenticatable
     public function profilePicture()
     {
         return is_null($this->file)
-            ? "https://ui-avatars.com/api/?background=random&size=256"
+            ? 'https://ui-avatars.com/api/?background=random&size=256&name=' . Str::of($this->name)->replace(' ', '+')
             : Storage::disk('public')->url($this->file->path);
     }
 
