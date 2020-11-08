@@ -49,7 +49,7 @@ class UploadProfilePictureTest extends TestCase
             
         //Assert
         $this->assertCount(1, File::all());
-        Storage::disk('disk')->assertExists(File::first()->path);
+        Storage::disk('public')->assertExists(File::first()->path);
         $this->assertNotNull($this->user->fresh()->file);
 
     }

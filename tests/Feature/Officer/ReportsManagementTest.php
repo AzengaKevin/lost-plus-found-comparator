@@ -22,11 +22,6 @@ class ReportsManagementTest extends TestCase
     {
         parent::setUp();
 
-        $this->role = Role::firstOrCreate(
-            ['title' =>  'officer'],
-            ['description' => 'Somehow a better role, but not that powerfull']
-        );
-
         $officer = factory(Officer::class)->create();
 
         $this->user = $officer->user;
