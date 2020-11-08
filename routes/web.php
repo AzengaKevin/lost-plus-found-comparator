@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController')->name('home');
 | Auth routes
 |--------------------------------------------------------------------------
 */
-Auth::routes(['verified' => true, 'register' => false]);
+Auth::routes(['verify' => true, 'register' => false]);
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ Auth::routes(['verified' => true, 'register' => false]);
 | Here is where all the routes that belong to only the admin go
 |
 */
-Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
+Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Officer', 'prefix' => 'o
 | Routes that all authenticated users have access to
 |
 */
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth', 'verified']], function(){
 
     Route::get('/user/{user}/profile', 'UsersController@showProfileInformation')
         ->name('users.profile.show');

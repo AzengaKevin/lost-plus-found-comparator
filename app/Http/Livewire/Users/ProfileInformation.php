@@ -6,6 +6,7 @@ use App\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ProfileInformation extends Component
 {
@@ -39,7 +40,19 @@ class ProfileInformation extends Component
     {
         $data = $this->validate();
 
-        Auth::user()->update($data);
+        if(($data['email'] !== Auth::user()->email) && (Auth::user() instanceof MustVerifyEmail)){
+            Auth::user()->forceFill(
+                array_merge(
+                    $data,
+                    ['email_verified_at' => null]
+                )
+            )->save();
+            
+            Auth::user()->sendEmailVerificationNotification();
+
+        }else{
+            Auth::user()->forceFill($data)->save();
+        }
         
         Log::notice('User profile updated: user ' . Auth::user()->id);
     }
