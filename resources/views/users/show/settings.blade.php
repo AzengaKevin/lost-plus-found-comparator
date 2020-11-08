@@ -22,12 +22,17 @@
                         <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
                             your account, please download any data or information that you wish to retain.</p>
 
-                            <button type="button" class="btn btn-danger text-uppercase">Delete Account</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" data-toggle="modal" data-target="#delete-account" class="btn btn-danger text-uppercase">Delete Account</button>
+                        </div>
                     </div>
                 </div>
             </div>
             
         </div>
     </div>
+
+    <x-users.delete-modal />
 </div>
+
 @endsection

@@ -76,6 +76,8 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
         ->name('users.profile.show');
     Route::get('/user/{user}/settings', 'UsersController@showProfileSettings')
         ->name('users.profile.settings');
-    
+
+    Route::delete('/user/{user}', DeleteAccountController::class)->name('users.destroy');
+
 });
 
