@@ -78,7 +78,10 @@ class ReportsController extends Controller
             $data['extra_items'] = json_encode($extraItems);
         }
 
-        $data['last_seen_with'] = json_encode($data['last_seen_with']);
+        if(isset($data['last_seen_with'])){
+            $data['last_seen_with'] = json_encode($data['last_seen_with']);
+        }
+
         $data['officer_id'] = $request->user()->officer->id;
         $data['station_id'] = $request->user()->officer->station_id;
         

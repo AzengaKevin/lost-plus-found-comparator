@@ -15,7 +15,7 @@
                                 <label class="text-gray-700 font-weight-bold" for="name">
                                     <span>Name</span>&nbsp;<span class="text-danger">*</span>
                                 </label>
-                                <input type="text" name="person_name" id="name" 
+                                <input type="text" name="person_name" id="name" value="{{ old('person_name') }}"
                                     class="form-control @error('person_name') is-invalid @enderror">
                                 @error('person_name')
                                 <span class="invalid-feedback"> 
@@ -27,7 +27,7 @@
                                 <label for="dob" class="text-gray-700 font-weight-bold">
                                     <span>Date of Birth</span>&nbsp;<span class="text-danger">*</span>
                                 </label>
-                                <input type="date" name="person_date_of_birth" id="dob" 
+                                <input type="date" name="person_date_of_birth" id="dob" value="{{ old('person_date_of_birth') }}"
                                     class="form-control @error('person_date_of_birth') is-invalid @enderror">
                                 @error('person_date_of_birth')
                                 <span class="invalid-feedback"> 
@@ -47,19 +47,22 @@
                                 <label class="text-gray-700 font-weight-bold" for="nationalIdentificationNumber">
                                     National Identification Number
                                 </label>
-                                <input type="text" name="person_national_identification_number" id="nationalIdentificationNumber" class="form-control">
+                                <input type="text" name="person_national_identification_number" 
+                                    id="nationalIdentificationNumber" class="form-control">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="text-gray-700 font-weight-bold" for="passportNumber">
                                     Passport Number
                                 </label>
-                                <input type="text" name="person_passport_number" id="passportNumber" class="form-control">
+                                <input type="text" name="person_passport_number" 
+                                    id="passportNumber" class="form-control">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="text-gray-700 font-weight-bold" for="birthCertificateNumber">
                                     Birth Certificate Number
                                 </label>
-                                <input type="text" name="person_birth_certificate_number" id="birthCertificateNumber" class="form-control">
+                                <input type="text" name="person_birth_certificate_number" id="birthCertificateNumber" 
+                                    class="form-control">
                             </div>
                         </div>
                         <hr class="my-2">
@@ -92,7 +95,7 @@
                                 <label class="text-gray-700 font-weight-bold" for="lastSeen">
                                     <span>Date</span>&nbsp;<span class="text-danger">*</span>
                                 </label>
-                                <input type="date" name="last_seen" id="lastSeen" 
+                                <input type="date" name="last_seen" id="lastSeen" value="{{ old('last_seen') }}"
                                     class="form-control @error('last_seen') is-invalid @enderror">
                                 @error('last_seen')
                                 <span class="invalid-feedback">
@@ -104,7 +107,7 @@
                                 <label for="place" class="text-gray-700 font-weight-bold">
                                     <span>Place</span>&nbsp;<span class="text-danger">*</span>
                                 </label>
-                                <input type="text" name="last_seen_place" id="place" 
+                                <input type="text" name="last_seen_place" id="place" value="{{ old('last_seen_place') }}"
                                     class="form-control @error('last_seen_place') is-invalid @enderror">
                                 @error('last_seen_place')
                                 <span class="invalid-feedback">
