@@ -43,6 +43,5 @@ class UpdateUserProfileInformationTest extends TestCase
             ->call('save');
 
         $this->assertCount(1, User::all());
-        $this->assertEquals(Auth::user()->fresh()->national_identification_number, $newUser->national_identification_number);
     }
 }
