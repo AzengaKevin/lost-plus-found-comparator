@@ -36,9 +36,14 @@
                                     <a href="{{ route('admin.officers.show', $officer) }}" class="btn btn-sm btn-primary">
                                         <i class="fa fa-eye"></i>
                                     </a>
+                                    <a href="{{ route('admin.officers.edit', $officer) }}" class="btn btn-sm btn-primary mx-2">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
 
                                     <form action="{{ route('admin.officers.destroy', $officer) }}" method="post">
-                                        <button type="submit" class="btn btn-sm btn-danger ml-3">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
                                             <i class="fa fa-trash-alt"></i>
                                         </button>
                                     </form>

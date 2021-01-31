@@ -86,7 +86,7 @@
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="{{ route('users.profile.settings', Auth::user()) }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="{{ url('/') }}">

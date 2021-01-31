@@ -7,6 +7,7 @@ use App\User;
 use App\Officer;
 use App\Station;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -45,13 +46,13 @@ class OfficersController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'phone_number' => ['required'],
-            'national_identification_number' => ['required'],
-            'station_id' => ['required'],
-            'ocs' => [],
-            'officer_number' => ['required'],
+            'user.name' => ['bail', 'required', 'string', 'max:255'],
+            'user.email' => ['bail', 'required', 'email', 'unique:users,email', 'max:255'],
+            'user.phone_number' => ['bail', 'required', 'string'],
+            'user.national_identification_number' => ['bail', 'required'],
+            'officer.station_id' => ['bail', 'required', 'numeric'],
+            'officer.ocs' => [],
+            'officer.officer_number' => ['bail', 'required', 'numeric'],
         ]);
 
         $role = Role::firstOrCreate([
@@ -59,12 +60,15 @@ class OfficersController extends Controller
             'description' => 'With this, you.ve got some real power on the site, though not that powerful'
         ]);
 
-        $user = User::create(array_merge($data, [
+        //Change OCS to boolean
+        $data['officer']['ocs'] = array_key_exists('ocs', $data['officer']);
+
+        $user = User::create(array_merge($data['user'], [
             'password' => Hash::make('password'),
             'role_id' => $role->id
         ]));
 
-        $user->officer()->create(array_merge($data, [
+        $user->officer()->create(array_merge($data['officer'], [
             'creator_id' => $request->user()->id,
         ]));
 
@@ -79,7 +83,9 @@ class OfficersController extends Controller
      */
     public function show(Officer $officer)
     {
-        //
+        $officer->load(['user','station']);
+
+        return view('admin.officers.show', compact('officer'));
     }
 
     /**
@@ -90,7 +96,11 @@ class OfficersController extends Controller
      */
     public function edit(Officer $officer)
     {
-        //
+        $officer->load(['user','station']);
+        
+        $stations = Station::all(['id', 'name']);
+
+        return view('admin.officers.edit', compact('officer', 'stations'));
     }
 
     /**
@@ -102,7 +112,29 @@ class OfficersController extends Controller
      */
     public function update(Request $request, Officer $officer)
     {
-        //
+        $data = $request->validate([
+            'user.name' => ['bail', 'required', 'string', 'max:255'],
+            'user.email' => ['bail', 'required', 'email', 'max:255'],
+            'user.phone_number' => ['bail', 'required', 'string'],
+            'user.national_identification_number' => ['bail', 'required'],
+            'officer.station_id' => ['bail', 'required', 'numeric'],
+            'officer.ocs' => [],
+            'officer.officer_number' => ['bail', 'required', 'numeric'],
+        ]);
+
+        $role = Role::firstOrCreate([
+            'title' => 'officer',
+            'description' => 'With this, you.ve got some real power on the site, though not that powerful'
+        ]);
+
+        //Change OCS to boolean
+        $data['officer']['ocs'] = array_key_exists('ocs', $data['officer']);
+
+        $officer->user->update($data['user']);
+
+        $officer->update($data['officer']);
+
+        return redirect()->route('admin.officers.show', $officer);
     }
 
     /**
@@ -113,6 +145,8 @@ class OfficersController extends Controller
      */
     public function destroy(Officer $officer)
     {
-        //
+        $officer->delete();
+
+        return redirect()->route('admin.officers.index');
     }
 }

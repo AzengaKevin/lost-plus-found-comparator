@@ -8,7 +8,7 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
+    <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
@@ -39,7 +39,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#items-dropdown" aria-expanded="true"
             aria-controls="items-dropdown">
-            <i class="fas fa-fw fa-store-alt"></i>
+            <i class="fas fa-fw fa-list"></i>
             <span>Items</span>
         </a>
         <div id="items-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -67,6 +67,15 @@
                 <a class="collapse-item" href="{{ route('admin.locations.index') }}">Browse Locations</a>
             </div>
         </div>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item {{ request()->routeIs('admin.reports.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.reports.index') }}">
+            <i class="fa fa-fw fa-folder"></i>
+            <span>All Cases</span>
+        </a>
     </li>
 
     <hr class="sidebar-divider">

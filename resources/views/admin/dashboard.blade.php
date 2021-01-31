@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Admin Dashboard')
+
 @section('content')
 <div class="row">
 
@@ -98,6 +100,23 @@
                                 <i class="fas fa-fw fa-store-alt fa-3x"></i>
                             </span>
                             <span>{{ $tally['stations'] }} Stations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <a class="text-decoration-none" href="{{ route('admin.reports.index') }}">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="d-flex flex-column align-items-center">
+                            <span>
+                                <i class="fas fa-fw fa-folder fa-3x"></i>
+                            </span>
+                            <span>{{ $tally['reports'] }} Reports</span>
                         </div>
                     </div>
                 </div>

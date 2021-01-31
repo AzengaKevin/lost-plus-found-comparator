@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\User;
+use App\Report;
 use App\Station;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +41,10 @@ class DashboardController extends Controller
         $tally['observers'] = User::group(Role::firstOrCreate(['title' => 'default'],
             ['description' => 'No powers, just a regular dude, with power of your profile only']))->count();
 
+        $tally['reports'] = Report::count();
+
         $tally['locations'] = Station::distinct('location')->count();
+        
         $tally['stations'] = Station::count();
         
         return view('admin.dashboard', compact('tally'));
