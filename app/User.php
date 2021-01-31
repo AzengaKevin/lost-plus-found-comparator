@@ -63,10 +63,23 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
+    /**
+     * User file realtionship
+     */
     public function file()
     {        
         return $this->morphOne(File::class, 'fileable');
 
+    }
+
+    /**
+     * User Role Query Scope
+     */
+    public function scopeGroup($query, ?Role $role = null)
+    {
+        if(!is_null($role)) return $query->where('role_id', $role->id);
+
+        return $query->whereNull('role_id');
     }
     
 }

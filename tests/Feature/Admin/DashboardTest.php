@@ -37,6 +37,8 @@ class DashboardTest extends TestCase
         $response->assertOk();
 
         $response->assertViewIs('admin.dashboard');
+
+        $response->assertViewHas('tally');
     }
 
     /**
