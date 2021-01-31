@@ -29,7 +29,7 @@ class StoreReportRequest extends FormRequest
             'person_national_identification_number' => ['nullable', 'numeric'],
             'person_birth_certificate_number' => ['nullable'],
             'person_passport_number' => ['nullable'],
-            'person_phone_number' => ['bail', 'numeric', 'nullable'],
+            'person_phone_number' => ['bail', 'nullable'],
             'person_date_of_birth' => ['bail', 'required' ,'date'],
             'keys' => ['nullable', 'array'],
             'values' => ['nullable', 'array'],

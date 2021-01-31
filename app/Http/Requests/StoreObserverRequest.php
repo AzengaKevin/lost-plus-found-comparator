@@ -26,7 +26,7 @@ class StoreObserverRequest extends FormRequest
         return [
             'name' => ['bail', 'required'],
             'email' => ['bail', 'required', 'unique:users'],
-            'phone_number' => ['bail', 'required', 'unique:users', 'max:15'],
+            'phone_number' => ['bail', 'required', 'unique:users'],
             'national_identification_number' => ['bail', 'required', 'unique:users', 'max:15'],
         ];
     }

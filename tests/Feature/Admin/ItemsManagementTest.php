@@ -67,6 +67,26 @@ class ItemsManagementTest extends TestCase
 
         $this->assertEquals($itemData['key'], Item::first()->key);
 
+        $this->assertTrue(Item::where('key', $itemData['key'])->exists());
+
+        $response->assertRedirect(route('admin.items.index'));
+    }
+
+    /** @group items */
+    public function test_admin_can_delete_an_item()
+    {
+        
+        $this->withoutExceptionHandling();
+
+        $this->be($this->user);
+
+        //Create the item to delete
+        $item = factory(Item::class)->create();
+
+        $response = $this->delete(route('admin.items.destroy', $item));
+
+        $this->assertEquals(0, Item::count());
+
         $response->assertRedirect(route('admin.items.index'));
     }
 

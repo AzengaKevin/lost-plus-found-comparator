@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Lost Person Items (Cutom)')
+@section('title', 'Lost Person Items (Custom)')
 
 @section('btn')
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-item-modal">Add Item</button>

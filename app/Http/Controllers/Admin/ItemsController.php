@@ -28,12 +28,15 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
+        //Validate the data
         $data = $request->validate([
-            'key' => ['required'],
+            'key' => ['required', 'string', 'max:32'],
         ]);
 
+        //Create the item using the validated data
         Item::create($data);
 
+        //Redirect to the resource index page
         return redirect()->route('admin.items.index');
     }
 
@@ -45,6 +48,10 @@ class ItemsController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        //Delete the item
+        $item->delete();
+
+        //Redirect to the resource index page
+        return redirect()->route('admin.items.index');
     }
 }

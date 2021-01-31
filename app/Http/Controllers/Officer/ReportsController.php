@@ -52,7 +52,7 @@ class ReportsController extends Controller
     {
         $data = $request->validated();
 
-        // dd($data);
+        dd($data);
 
         $extraItems = [];
 
