@@ -31,10 +31,10 @@ class ReportsController extends Controller
      */
     public function create()
     {
-        $role = Role::firstOrCreate([
-            'title' => 'default',
-            'description' => 'No powers, just a regular dude, with power of your profile only'
-        ]);
+        $role = Role::firstOrCreate(
+            ['title' => 'default'],
+            ['description' => 'No powers, just a regular dude, with power of your profile only']
+        );
 
         $users = User::where('role_id', $role->id)
             ->get();

@@ -70,11 +70,30 @@ class ReportsManagementTest extends TestCase
      */
     public function officer_can_create_a_report()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $this->be($this->user);
+
         $reportData = factory(Report::class)->make()->toArray();
+
+        $keys = array();
+        $values = array();
+
+        //Browser desing key and values
+        foreach ($reportData['extra_items'] as $key => $value) {
+            $keys[] = $key;
+            $values[] = $value;
+        }
+
+        unset($reportData['extra_items']);
+        
+        $reportData['keys'] = $keys;
+        $reportData['values'] = $values;
+        
+        array_values($reportData);
+
         $observers = factory(User::class, 3)->create()->pluck('id')->toArray();
+        
 
         $response = $this->post(route('officer.reports.store'), array_merge(
             $reportData, [
@@ -82,9 +101,21 @@ class ReportsManagementTest extends TestCase
             ]
         ));
         
-        $this->assertCount(1, Report::all());
+        $this->assertTrue(Report::where('person_name', $reportData['person_name'])->exists());
 
-        $this->assertCount(3, Report::first()->users);
+        $report = Report::where('person_name', $reportData['person_name'])->first();
+
+        $this->assertCount(3, $report->users);
+
+        $this->assertEquals($reportData['person_name'], $report->person_name);
+        $this->assertEquals($reportData['person_national_identification_number'], $report->person_national_identification_number);
+        $this->assertEquals($reportData['person_birth_certificate_number'], $report->person_birth_certificate_number);
+        $this->assertEquals($reportData['person_phone_number'], $report->person_phone_number);
+        $this->assertEquals($reportData['person_date_of_birth'], $report->person_date_of_birth);
+
+        $this->assertTrue(array_key_exists('mood', json_decode($report->extra_items, true)));
+        
+        $this->assertFalse(boolval($report->solved));
 
         $response->assertRedirect(route('officer.reports.index'));
     }

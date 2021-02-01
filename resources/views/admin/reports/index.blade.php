@@ -36,9 +36,13 @@
                         <a href="{{ route('admin.reports.edit', $report) }}" class="btn btn-sm btn-info mx-2">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-sm btn-danger mx-2">
-                            <i class="fa fa-trash-alt"></i>
-                        </a>
+                        <form method="POST" action="{{ route('admin.reports.destroy', $report) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger mx-2">
+                                <i class="fa fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

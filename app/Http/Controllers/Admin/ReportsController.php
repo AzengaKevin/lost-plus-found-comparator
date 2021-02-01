@@ -21,27 +21,6 @@ class ReportsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Report  $report
@@ -49,7 +28,7 @@ class ReportsController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return view('admin.reports.show', compact('report'));
     }
 
     /**
@@ -60,7 +39,7 @@ class ReportsController extends Controller
      */
     public function edit(Report $report)
     {
-        //
+        return view('admin.reports.edit', compact('report'));
     }
 
     /**
@@ -72,7 +51,15 @@ class ReportsController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        //
+        $data = $request->validate([
+            'solved' => ['bail', 'nullable']
+        ]);
+
+        $data['solved'] = array_key_exists('solved', $data);
+
+        $report->update($data);
+
+        return redirect()->route('admin.reports.show', $report);
     }
 
     /**
@@ -83,6 +70,8 @@ class ReportsController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        $report->delete();
+
+        return redirect()->route('admin.reports.index');
     }
 }

@@ -29,6 +29,7 @@ class CreateReportsTable extends Migration
             $table->datetime('last_seen');
             $table->string('last_seen_place');
             $table->json('last_seen_with')->nullable();
+            $table->boolean('solved')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -122,11 +122,6 @@ class OfficersController extends Controller
             'officer.officer_number' => ['bail', 'required', 'numeric'],
         ]);
 
-        $role = Role::firstOrCreate([
-            'title' => 'officer',
-            'description' => 'With this, you.ve got some real power on the site, though not that powerful'
-        ]);
-
         //Change OCS to boolean
         $data['officer']['ocs'] = array_key_exists('ocs', $data['officer']);
 

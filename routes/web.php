@@ -46,7 +46,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'namespace' => 'Admin', 'pre
     Route::resource('items', 'ItemsController')
         ->only(['index', 'store', 'destroy']);
     
-    Route::resource('reports', 'ReportsController');
+    Route::resource('reports', 'ReportsController')
+        ->except('create', 'store');
     
 });
 

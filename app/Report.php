@@ -21,11 +21,13 @@ class Report extends Model
         'extra_items',
         'last_seen',
         'last_seen_place',
-        'last_seen_with'
+        'last_seen_with',
+        'solved'
     ];
 
     protected $casts = [
         'last_seen_with' => 'array',
+        'extra_items' => 'array',
         'last_seen' => 'date'
     ];
 
@@ -39,5 +41,10 @@ class Report extends Model
     public function station()
     {
         return $this->belongsTo(Station::class);
+    }
+
+    public function officer()
+    {
+        return $this->belongsTo(Officer::class);
     }
 }
