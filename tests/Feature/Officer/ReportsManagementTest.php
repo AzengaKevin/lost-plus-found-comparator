@@ -119,4 +119,23 @@ class ReportsManagementTest extends TestCase
 
         $response->assertRedirect(route('officer.reports.index'));
     }
+
+    /** @group reports */
+    public function test_officer_can_view_a_single_report_show_page()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->be($this->user);
+
+        $report = factory(Report::class)->create();
+
+        $response = $this->get(route('officer.reports.show', $report));
+
+        $response->assertOk();
+
+        $response->assertViewIs('officer.reports.show');
+
+        $response->assertViewHas('report');
+        
+    }
 }
