@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/home');
 Route::get('/home', 'HomeController')->name('home');
 
+Route::resource('reports', 'ReportController')
+    ->only('index', 'show');
+
 /*
 |--------------------------------------------------------------------------
 | Auth routes
