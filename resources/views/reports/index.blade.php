@@ -36,7 +36,7 @@
                         <td>{{ $report->updated_at->format('m/d/Y') }}</td>
                         <td>{{ $report->created_at->format('m/d/Y') }}</td>
                         <td class="d-flex">
-                            <a href="{{ route('officer.reports.show', $report) }}"
+                            <a href="{{ route('reports.show', $report) }}"
                                 class="btn btn-sm btn-secondary mx-2">
                                 <i class="fa fa-eye"></i>
                             </a>

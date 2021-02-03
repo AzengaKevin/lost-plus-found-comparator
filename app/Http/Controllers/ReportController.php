@@ -9,7 +9,9 @@ use Illuminate\Support\Collection;
 class ReportController extends Controller
 {
     
-    /** @group reports */
+    /**
+     * Displays all the reports from the database
+     */
     public function index(Request $request)
     {
         $reports = Report::latest()->paginate();
@@ -21,5 +23,15 @@ class ReportController extends Controller
         }
 
         return view('reports.index', compact('reports'));
+    }
+
+    /**
+     * Shows a single post
+     * 
+     * @param Report $report
+     */
+    public function show(Report $report)
+    {
+        return view('reports.show', compact('report'));
     }
 }

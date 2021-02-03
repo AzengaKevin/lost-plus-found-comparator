@@ -26,4 +26,21 @@ class ReportsManagementTest extends TestCase
 
         $response->assertViewHas('reports');
     }
+
+    /** @group reports */
+    public function a_guest_can_visit_the_report_show_page()
+    {
+        $this->withoutExceptionHandling();
+
+        $report = factory(Report::class)->create();
+
+        $response = $this->get(route('reports.show', $report));
+
+        $response->assertOk();
+
+        $response->assertViewIs('reports.show');
+
+        $response->assertViewHas('report');
+        
+    }
 }
