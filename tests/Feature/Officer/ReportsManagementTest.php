@@ -7,6 +7,7 @@ use App\User;
 use App\Report;
 use App\Officer;
 use Tests\TestCase;
+use Livewire\Livewire;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -121,7 +122,7 @@ class ReportsManagementTest extends TestCase
     }
 
     /** @group reports */
-    public function test_officer_can_view_a_single_report_show_page()
+    public function officer_can_view_a_single_report_show_page()
     {
         $this->withoutExceptionHandling();
 
@@ -137,5 +138,41 @@ class ReportsManagementTest extends TestCase
 
         $response->assertViewHas('report');
         
+    }
+
+    /** @group reports */
+    public function test_officer_can_see_report_edit_page()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->be($this->user);
+
+        $report = factory(Report::class)->create();
+
+        $response = $this->get(route('officer.reports.edit', $report));
+
+        $response->assertOk();
+
+        $response->assertViewIs('officer.reports.edit');
+
+        $response->assertViewHas('report');
+
+        $response->assertSeeLivewire('reports.person-details');
+    }
+
+    /** @group reports */
+    public function report_personal_details_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->be($this->user);
+
+        $report = factory(Report::class)->create();
+
+        Livewire::test(PersonDetails::class, $report)
+            ->set('person_name', 'Jane Doe')
+            ->update('update', $report);
+        
+        $this->assertTrue(Report::where('person_name', 'Jane Doe')->exists());
     }
 }

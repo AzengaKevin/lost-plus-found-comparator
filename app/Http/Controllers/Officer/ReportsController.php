@@ -114,7 +114,7 @@ class ReportsController extends Controller
      */
     public function edit(Report $report)
     {
-        //
+        return view('officer.reports.edit', compact('report'));
     }
 
     /**
