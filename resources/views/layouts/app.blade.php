@@ -14,7 +14,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto ml-5">
+                <ul class="navbar-nav mr-auto ml-0  ml-md-5">
                     <li class="nav-item">
                         <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                     </li>
