@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Report extends Model
 {
     use SoftDeletes;
+    use Searchable;
 
     protected $fillable = [
         'officer_id',
